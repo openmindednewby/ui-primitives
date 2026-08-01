@@ -44,6 +44,37 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
 See `project_built_by_attribution.md` in the project memory for the full policy.
 
+## `<Avatar />`
+
+A themed, circular monogram avatar (RN-web + native) for the finreg CRM — contacts table, contact-detail header, activity timeline — and anywhere a person or organisation needs a compact visual identity. Colours come from the app's `@dloizides/ui-feedback` `UiProvider` theme (`useUi`), so it re-tints automatically with the brand and in dark mode. Nothing is hardcoded.
+
+```tsx
+import { Avatar } from '@dloizides/ui-primitives';
+
+// Monogram (deterministic tint from the name)
+<Avatar name="Acme Corp Ltd" testID="contact-avatar" />   // -> "AC"
+
+// Photo (initials remain the fallback)
+<Avatar name="Petros Pan" size={64} imageUrl={contact.photoUrl} testID="contact-avatar" />
+```
+
+Mount a `UiProvider` (from `@dloizides/ui-feedback`) high in the app tree so the avatar reads the real theme.
+
+### Props
+
+| Prop | Type | Default | Purpose |
+|------|------|---------|---------|
+| `name` | `string` | — (required) | Full name. Derives the initials, the deterministic background tint, and the accessible label. |
+| `size` | `number` | `40` | Diameter in px. The circle radius, initials font size, and image all scale from this. |
+| `imageUrl` | `string` | — | Optional photo. When set (and non-empty) it fills the circle; the monogram stays the fallback. |
+| `testID` | `string` | — | Test / accessibility hook. When provided, the inner image also gets `${testID}-image`. |
+
+### Behaviour
+
+- **Initials** — first letters of the first two words, uppercased (`"Acme Corp Ltd"` → `"AC"`, `"Petros"` → `"P"`). Unicode/emoji safe. Empty or whitespace-only names render `"?"`.
+- **Colour** — the background is one of the theme's brand/semantic `500` swatches, chosen by hashing the name (same name → same tint). The ink is whichever theme neutral (`colors.text` / `colors.background`) contrasts better, so it stays legible in light and dark themes.
+- **Accessibility** — `accessibilityRole="image"` + `accessibilityLabel={name}` (renders as `role="img"` + `aria-label` on the web).
+
 ## License
 
 MIT

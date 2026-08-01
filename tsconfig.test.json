@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noUncheckedIndexedAccess": false,
-    "rootDir": "."
+    "rootDir": ".",
+    "types": ["jest", "node", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "jest.setup.ts"]
 }
