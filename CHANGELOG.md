@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 — 2026-08-02
+## 1.3.0 — 2026-08-02
 
 - Added `<Avatar />` — a themed, circular monogram avatar (RN-web + native) for the finreg CRM (contacts table, contact-detail header, activity timeline) and any product needing a compact person/organisation identity.
   - Derives up to two uppercased initials from `name` (unicode/emoji safe; `"?"` fallback for empty names).
