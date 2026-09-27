@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 — 2026-09-27
+
+- `deriveInitials` skips punctuation-only joiner words: "Jimmy & Ismini" -> "JI", not "J&" (KEFI-PEOPLE-1 T21).
+
 ## 1.4.0 — 2026-09-27
 
 - Export `deriveInitials` (the Avatar initials rule) from the package index, so apps stop re-implementing it (KEFI-PEOPLE-1 T21).

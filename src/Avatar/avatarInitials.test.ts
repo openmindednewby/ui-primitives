@@ -1,6 +1,11 @@
 import { deriveInitials, firstInitial } from './avatarInitials';
 
 describe('deriveInitials', () => {
+  it('skips punctuation-only joiner words', () => {
+    expect(deriveInitials('Jimmy & Ismini')).toBe('JI');
+    expect(deriveInitials('& -')).toBe('?');
+  });
+
   it('takes the first letter of a single word', () => {
     expect(deriveInitials('Petros')).toBe('P');
   });

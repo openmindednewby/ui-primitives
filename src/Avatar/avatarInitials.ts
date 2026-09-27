@@ -14,6 +14,9 @@ const MAX_INITIALS = 2;
 /** Splits on any run of whitespace. */
 const WHITESPACE = /\s+/;
 
+/** A word made only of punctuation ("&", "-", "/") is a joiner, not a name. */
+const PUNCTUATION_ONLY = /^\p{P}+$/u;
+
 /**
  * The uppercased first grapheme of a word. Returns an empty string for an empty
  * input (the only way `codePointAt(0)` is `undefined`); {@link deriveInitials} never
@@ -33,6 +36,7 @@ export function firstInitial(word: string): string {
  * - `"Petros"` -> `"P"`
  * - `"Acme Corp"` -> `"AC"`
  * - `"Acme Corp Ltd"` -> `"AC"` (only the first two words)
+ * - `"Jimmy & Ismini"` -> `"JI"` (punctuation-only words are skipped)
  * - `""` / `"   "` -> `"?"`
  *
  * Extra internal whitespace collapses and leading/trailing whitespace is trimmed.
@@ -41,7 +45,7 @@ export function deriveInitials(name: string): string {
   const words = name
     .trim()
     .split(WHITESPACE)
-    .filter((word) => word.length > 0);
+    .filter((word) => word.length > 0 && !PUNCTUATION_ONLY.test(word));
 
   if (words.length === 0) {
     return FALLBACK_INITIAL;
