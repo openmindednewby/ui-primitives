@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0 — 2026-09-27
+
+- Export `deriveInitials` (the Avatar initials rule) from the package index, so apps stop re-implementing it (KEFI-PEOPLE-1 T21).
+
 ## 1.3.0 — 2026-08-02
 
 - Added `<Avatar />` — a themed, circular monogram avatar (RN-web + native) for the finreg CRM (contacts table, contact-detail header, activity timeline) and any product needing a compact person/organisation identity.
