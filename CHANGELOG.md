@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.1 — 2026-11-26
+
+- Release fix: the `@dloizides/ui-feedback` devDependency comes from the registry (^1.28.0), so the CI release resolves it; ships the 1.5.0 `InfoTip` (KEFI-PPQ-1).
+
 ## 1.5.0 — 2026-11-26
 
 - New `InfoTip`: a 44x44 trigger (an (i) glyph or custom children) that shows a themed tooltip on hover, focus or press; Esc or an outside press closes it (KEFI-PPQ-1).
